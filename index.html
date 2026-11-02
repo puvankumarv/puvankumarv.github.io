@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puvan Kumar V</title>
+  <meta name="description" content="Portfolio of Puvan Kumar V, software developer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --ink: #1d1a2f;
+      --muted: #6b6680;
+      --c1: #ff5d73;
+      --c2: #ffb703;
+      --c3: #2ec4b6;
+      --c4: #6a4cff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #16131f;
+        --ink: #f6f1ff;
+        --muted: #a49fb8;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #16131f;
+      --ink: #f6f1ff;
+      --muted: #a49fb8;
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Fredoka", system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    main { text-align: center; position: relative; z-index: 1; }
+
+    .hi {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--muted);
+      margin-bottom: 0.4em;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 12vw, 8rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    h1 .word { display: inline-block; white-space: nowrap; }
+
+    h1 .ch {
+      display: inline-block;
+      animation: bob 2.4s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 0.08s);
+      cursor: default;
+      transition: transform 0.2s;
+    }
+    h1 .ch:hover { animation-play-state: paused; transform: rotate(-12deg) scale(1.25); }
+    h1 .ch:nth-child(4n+1) { color: var(--c1); }
+    h1 .ch:nth-child(4n+2) { color: var(--c2); }
+    h1 .ch:nth-child(4n+3) { color: var(--c3); }
+    h1 .ch:nth-child(4n+4) { color: var(--c4); }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-0.12em); }
+    }
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.35;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .b1 { width: 40vmax; height: 40vmax; background: var(--c1); top: -15vmax; left: -10vmax; }
+    .b2 { width: 32vmax; height: 32vmax; background: var(--c3); bottom: -12vmax; right: -8vmax; animation-delay: -5s; }
+    .b3 { width: 22vmax; height: 22vmax; background: var(--c2); top: 55%; left: 10%; animation-delay: -9s; }
+
+    @keyframes drift {
+      to { transform: translate(6vmax, -4vmax) scale(1.15); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      h1 .ch, .blob { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <div class="blob b3" aria-hidden="true"></div>
+
+  <main>
+    <p class="hi">👋 Hi, I'm</p>
+    <h1 aria-label="Puvan Kumar V">Puvan Kumar V</h1>
+  </main>
+
+  <script>
+    // Split the name into letters so each one can bounce on its own
+    const h1 = document.querySelector("h1");
+    let i = 0;
+    h1.innerHTML = h1.textContent.split(" ").map(word =>
+      `<span class="word" aria-hidden="true">${[...word].map(c =>
+        `<span class="ch" style="--i:${i++}">${c}</span>`).join("")}</span>`
+    ).join(" ");
+  </script>
+</body>
+</html>
