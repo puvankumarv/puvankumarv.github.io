@@ -4,127 +4,223 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Puvan Kumar V</title>
-  <meta name="description" content="Portfolio of Puvan Kumar V, software developer.">
+  <meta name="description" content="Puvan Kumar V, software developer.">
+  <meta name="theme-color" content="#1423bb">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --paper: #f4f3ef;
-      --ink: #141413;
-      --grey: #84847a;
-      --rule: #d6d4cd;
-      --accent: #1c5cec;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --paper: #121211;
-        --ink: #ecebe6;
-        --grey: #8a8a82;
-        --rule: #2b2b29;
-        --accent: #5b8bff;
-      }
-    }
-    :root[data-theme="dark"] {
-      --paper: #121211;
-      --ink: #ecebe6;
-      --grey: #8a8a82;
-      --rule: #2b2b29;
-      --accent: #5b8bff;
+      --cobalt: #1423bb;
+      --cream: #f2efe4;
+      --lilac: #a8aed9;
+      --amber: #ff7a2e;
+      color-scheme: dark;
     }
 
     * { box-sizing: border-box; margin: 0; }
 
+    html, body { height: 100%; }
+
     body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "Inter Tight", system-ui, sans-serif;
+      background: var(--cobalt);
+      color: var(--cream);
+      font-family: "Geist Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      overflow: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    .page {
-      min-height: 100svh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding-inline: clamp(16px, 4vw, 48px);
+    canvas {
+      position: fixed;
+      inset: 0;
+      touch-action: none;
+      cursor: crosshair;
     }
 
-    .mono {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 12px;
-      letter-spacing: 0.02em;
+    /* Real heading for screen readers and as a no-JS fallback */
+    h1 {
+      position: fixed;
+      left: clamp(16px, 3vw, 40px);
+      top: 50%;
+      transform: translateY(-50%);
+      font: 800 clamp(3rem, 12vw, 10rem)/0.9 "Inter Tight", sans-serif;
+      letter-spacing: -0.04em;
       text-transform: uppercase;
     }
+    .js h1 {
+      clip-path: inset(50%);
+      width: 1px; height: 1px;
+      overflow: hidden;
+    }
 
-    header {
+    .hud {
+      position: fixed;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding-block: 20px;
-      border-bottom: 1px solid var(--rule);
+      gap: 24px;
+      pointer-events: none;
+      color: var(--lilac);
     }
-    header .mark { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+    .hud b { color: var(--cream); font-weight: 500; }
+    .tl { top: 20px; left: clamp(16px, 3vw, 40px); }
+    .tr { top: 20px; right: clamp(16px, 3vw, 40px); }
+    .bl { bottom: 20px; left: clamp(16px, 3vw, 40px); }
+    .br { bottom: 20px; right: clamp(16px, 3vw, 40px); }
 
-    .status { display: inline-flex; align-items: center; gap: 8px; color: var(--grey); }
-    .status::before {
-      content: "";
+    .key {
+      display: inline-block;
+      padding: 1px 6px;
+      border: 1px solid var(--lilac);
+      color: var(--cream);
+    }
+    .dot {
+      display: inline-block;
       width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
+      margin-right: 8px;
+      background: var(--amber);
+      vertical-align: 1px;
     }
 
-    .hero {
-      align-self: end;
-      padding-block: clamp(48px, 10vh, 120px) clamp(24px, 4vh, 40px);
-    }
-    .hero .label { color: var(--grey); margin-bottom: 20px; }
-    .hero .label b { color: var(--accent); font-weight: 500; }
-
-    h1 {
-      font-weight: 500;
-      font-size: clamp(3.2rem, 13vw, 11.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.045em;
-      word-spacing: 0.06em;
-      margin-left: -0.04em;
-    }
-
-    footer {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding-block: 20px;
-      border-top: 1px solid var(--rule);
-      color: var(--grey);
-    }
-    footer span:nth-child(2) { text-align: center; }
-    footer span:last-child { text-align: right; }
-    footer .role { color: var(--ink); }
-
-    @media (max-width: 560px) {
-      footer { grid-template-columns: 1fr 1fr; }
-      footer span:nth-child(2) { display: none; }
+    @media (max-width: 640px) {
+      .hud { gap: 12px; font-size: 11px; }
+      .hide-sm { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <span class="mark">PKV</span>
-      <span class="status mono">Portfolio in progress</span>
-    </header>
+  <script>document.documentElement.classList.add("js")</script>
+  <canvas aria-hidden="true"></canvas>
+  <h1>Puvan<br>Kumar V</h1>
 
-    <main class="hero">
-      <p class="label mono"><b>//</b> Hello, I'm</p>
-      <h1>Puvan<br>Kumar V</h1>
-    </main>
+  <div class="hud tl"><b>Puvan Kumar V</b><span class="hide-sm">Portfolio v0.1</span></div>
+  <div class="hud tr"><span><span class="dot"></span>Software Developer</span></div>
+  <div class="hud bl"><span id="coords">x 0000 y 0000</span><span id="count" class="hide-sm">0 px</span></div>
+  <div class="hud br"><span><span class="key" id="key">Space</span> recompile</span></div>
 
-    <footer class="mono">
-      <span class="role">Software Developer</span>
-      <span>Index — 001</span>
-      <span>© 2026</span>
-    </footer>
-  </div>
+  <script>
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    const coords = document.getElementById("coords");
+    const count = document.getElementById("count");
+    const css = getComputedStyle(document.documentElement);
+    const CREAM = css.getPropertyValue("--cream").trim();
+    const AMBER = css.getPropertyValue("--amber").trim();
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (matchMedia("(pointer: coarse)").matches) document.getElementById("key").textContent = "Tap";
+
+    let W, H, cell, pixels = [];
+    const mouse = { x: -9999, y: -9999 };
+
+    // Render the name off-screen, then turn every filled grid cell into a pixel
+    function build() {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      W = innerWidth;
+      H = innerHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + "px";
+      canvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const lines = ["PUVAN", "KUMAR V"];
+      const pad = W < 640 ? 16 : Math.min(40, W * 0.03);
+      const off = document.createElement("canvas");
+      off.width = W;
+      off.height = H;
+      const o = off.getContext("2d");
+
+      o.font = '800 100px "Inter Tight", sans-serif';
+      const widest = Math.max(...lines.map(l => o.measureText(l).width));
+      const size = Math.min((100 * (W - pad * 2)) / widest, (H * 0.62) / (lines.length * 0.9));
+      const cap = size * 0.73;
+      const lead = size * 0.9;
+      const top = H / 2 - (cap + lead * (lines.length - 1)) / 2;
+
+      o.font = `800 ${size}px "Inter Tight", sans-serif`;
+      lines.forEach((line, i) => o.fillText(line, pad, top + cap + i * lead));
+
+      cell = Math.max(4, Math.round(size / 18));
+      const data = o.getImageData(0, 0, W, H).data;
+      pixels = [];
+      for (let y = 0; y < H; y += cell) {
+        for (let x = 0; x < W; x += cell) {
+          const cx = Math.min(W - 1, x + (cell >> 1));
+          const cy = Math.min(H - 1, y + (cell >> 1));
+          if (data[(cy * W + cx) * 4 + 3] > 128) {
+            pixels.push({ hx: x, hy: y, x, y, vx: 0, vy: 0 });
+          }
+        }
+      }
+      count.textContent = pixels.length.toLocaleString() + " px";
+      if (!still) scramble();
+    }
+
+    function scramble() {
+      for (const p of pixels) {
+        p.x = Math.random() * W;
+        p.y = Math.random() * H;
+        p.vx = p.vy = 0;
+      }
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, W, H);
+      const R = cell * 11;
+      const size = cell - 1;
+      const loose = [];
+
+      ctx.fillStyle = CREAM;
+      for (const p of pixels) {
+        if (!still) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < R * R) {
+            const d = Math.sqrt(d2) || 1;
+            const f = (1 - d / R) * 5;
+            p.vx += (dx / d) * f;
+            p.vy += (dy / d) * f;
+          }
+          p.vx = (p.vx + (p.hx - p.x) * 0.07) * 0.8;
+          p.vy = (p.vy + (p.hy - p.y) * 0.07) * 0.8;
+          p.x += p.vx;
+          p.y += p.vy;
+        }
+        // Pixels knocked out of place glow amber until they settle
+        if (Math.abs(p.x - p.hx) + Math.abs(p.y - p.hy) > cell * 0.6) loose.push(p);
+        else ctx.fillRect(p.x, p.y, size, size);
+      }
+      ctx.fillStyle = AMBER;
+      for (const p of loose) ctx.fillRect(p.x, p.y, size, size);
+
+      requestAnimationFrame(frame);
+    }
+
+    const pad4 = n => String(Math.max(0, Math.round(n))).padStart(4, "0");
+    addEventListener("pointermove", e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      coords.textContent = `x ${pad4(e.clientX)} y ${pad4(e.clientY)}`;
+    });
+    document.addEventListener("pointerleave", () => { mouse.x = mouse.y = -9999; });
+    canvas.addEventListener("click", () => still || scramble());
+    addEventListener("keydown", e => {
+      if (e.code === "Space") { e.preventDefault(); still || scramble(); }
+    });
+
+    let resizeTimer;
+    addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(build, 150);
+    });
+
+    document.fonts.load('800 100px "Inter Tight"').finally(() => {
+      build();
+      frame();
+    });
+  </script>
 </body>
 </html>
