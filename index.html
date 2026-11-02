@@ -83,9 +83,30 @@
       vertical-align: 1px;
     }
 
+    .social {
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      max-width: calc(100% - 240px);
+      pointer-events: auto;
+    }
+    .social a {
+      color: var(--lilac);
+      text-decoration: none;
+      padding-block: 4px;
+    }
+    .social a::after { content: " ↗"; opacity: 0.6; }
+    .social a:hover,
+    .social a:focus-visible {
+      color: var(--cream);
+      outline: none;
+      box-shadow: inset 0 -1px 0 var(--amber);
+    }
+
     @media (max-width: 640px) {
       .hud { gap: 12px; font-size: 11px; }
       .hide-sm { display: none; }
+      .social { max-width: none; right: 16px; gap: 4px 16px; }
+      .br { display: none; }
     }
   </style>
 </head>
@@ -94,9 +115,20 @@
   <canvas aria-hidden="true"></canvas>
   <h1>Puvan<br>Kumar V</h1>
 
-  <div class="hud tl"><b>Puvan Kumar V</b><span class="hide-sm">Portfolio v0.1</span></div>
+  <div class="hud tl"><b>Puvan Kumar V</b><span id="coords" class="hide-sm">x 0000 y 0000</span><span id="count" class="hide-sm">0 px</span></div>
   <div class="hud tr"><span><span class="dot"></span>Software Developer</span></div>
-  <div class="hud bl"><span id="coords">x 0000 y 0000</span><span id="count" class="hide-sm">0 px</span></div>
+  <nav class="hud bl social" aria-label="Social profiles">
+    <a href="https://github.com/puvankumarv" target="_blank" rel="me noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/puvankumarv" target="_blank" rel="me noopener">LinkedIn</a>
+    <a href="https://x.com/puvankumarv" target="_blank" rel="me noopener">X</a>
+    <a href="https://www.instagram.com/puvankumarv/" target="_blank" rel="me noopener">Instagram</a>
+    <a href="https://www.youtube.com/@puvankumarv" target="_blank" rel="me noopener">YouTube</a>
+    <a href="https://www.behance.net/puvankumarv" target="_blank" rel="me noopener">Behance</a>
+    <a href="https://codepen.io/puvankumarv" target="_blank" rel="me noopener">CodePen</a>
+    <a href="https://leetcode.com/u/puvankumarv/" target="_blank" rel="me noopener">LeetCode</a>
+    <a href="https://www.threads.net/@puvankumarv" target="_blank" rel="me noopener">Threads</a>
+    <a href="https://www.facebook.com/puvankumarv" target="_blank" rel="me noopener">Facebook</a>
+  </nav>
   <div class="hud br"><span><span class="key" id="key">Space</span> recompile</span></div>
 
   <script>
