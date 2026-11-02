@@ -7,115 +7,124 @@
   <meta name="description" content="Portfolio of Puvan Kumar V, software developer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d1117;
-      --panel: #161b22;
-      --line: #30363d;
-      --text: #e6edf3;
-      --muted: #7d8590;
-      --green: #3fb950;
-      --blue: #58a6ff;
-      --purple: #d2a8ff;
-      --orange: #ffa657;
-      --pink: #ff7b72;
+      --paper: #f4f3ef;
+      --ink: #141413;
+      --grey: #84847a;
+      --rule: #d6d4cd;
+      --accent: #1c5cec;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --paper: #121211;
+        --ink: #ecebe6;
+        --grey: #8a8a82;
+        --rule: #2b2b29;
+        --accent: #5b8bff;
+      }
+    }
+    :root[data-theme="dark"] {
+      --paper: #121211;
+      --ink: #ecebe6;
+      --grey: #8a8a82;
+      --rule: #2b2b29;
+      --accent: #5b8bff;
     }
 
     * { box-sizing: border-box; margin: 0; }
 
     body {
-      min-height: 100vh;
-      min-height: 100dvh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Inter Tight", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100svh;
       display: grid;
-      place-items: center;
-      padding: 16px;
-      background-color: var(--bg);
-      background-image:
-        radial-gradient(circle at 20% 10%, rgba(88,166,255,.08), transparent 40%),
-        radial-gradient(circle at 80% 90%, rgba(63,185,80,.07), transparent 40%),
-        radial-gradient(var(--line) 1px, transparent 1px);
-      background-size: auto, auto, 24px 24px;
-      color: var(--text);
+      grid-template-rows: auto 1fr auto;
+      padding-inline: clamp(16px, 4vw, 48px);
+    }
+
+    .mono {
       font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
 
-    .window {
-      width: min(720px, 100%);
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.5);
-      overflow: hidden;
-    }
-
-    .bar {
+    header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--line);
-      font-size: 13px;
-      color: var(--muted);
+      gap: 16px;
+      padding-block: 20px;
+      border-bottom: 1px solid var(--rule);
     }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot:nth-child(1) { background: #ff5f57; }
-    .dot:nth-child(2) { background: #febc2e; }
-    .dot:nth-child(3) { background: #28c840; }
-    .bar span { margin-left: 8px; }
+    header .mark { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
 
-    .body { padding: clamp(24px, 6vw, 48px); }
+    .status { display: inline-flex; align-items: center; gap: 8px; color: var(--grey); }
+    .status::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-    .prompt { font-size: clamp(13px, 2.4vw, 15px); color: var(--muted); }
-    .prompt .user { color: var(--green); }
-    .prompt .path { color: var(--blue); }
-    .prompt .cmd { color: var(--text); }
+    .hero {
+      align-self: end;
+      padding-block: clamp(48px, 10vh, 120px) clamp(24px, 4vh, 40px);
+    }
+    .hero .label { color: var(--grey); margin-bottom: 20px; }
+    .hero .label b { color: var(--accent); font-weight: 500; }
 
     h1 {
-      margin: 20px 0 12px;
-      font-family: "Inter", system-ui, sans-serif;
-      font-weight: 800;
-      font-size: clamp(2.4rem, 10vw, 5rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      background: linear-gradient(90deg, var(--blue), var(--purple) 55%, var(--pink));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-weight: 500;
+      font-size: clamp(3.2rem, 13vw, 11.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      word-spacing: 0.06em;
+      margin-left: -0.04em;
     }
 
-    .role { font-size: clamp(14px, 2.8vw, 18px); }
-    .role .kw { color: var(--pink); }
-    .role .var { color: var(--orange); }
-    .role .str { color: var(--green); }
-
-    .cursor {
-      display: inline-block;
-      width: .6em;
-      height: 1.1em;
-      margin-left: 4px;
-      vertical-align: text-bottom;
-      background: var(--green);
-      animation: blink 1s steps(1) infinite;
+    footer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-block: 20px;
+      border-top: 1px solid var(--rule);
+      color: var(--grey);
     }
-    @keyframes blink { 50% { opacity: 0; } }
+    footer span:nth-child(2) { text-align: center; }
+    footer span:last-child { text-align: right; }
+    footer .role { color: var(--ink); }
 
-    @media (prefers-reduced-motion: reduce) {
-      .cursor { animation: none; }
+    @media (max-width: 560px) {
+      footer { grid-template-columns: 1fr 1fr; }
+      footer span:nth-child(2) { display: none; }
     }
   </style>
 </head>
 <body>
-  <main class="window">
-    <div class="bar" aria-hidden="true">
-      <i class="dot"></i><i class="dot"></i><i class="dot"></i>
-      <span>~/portfolio — zsh</span>
-    </div>
-    <div class="body">
-      <p class="prompt"><span class="user">puvan@dev</span>:<span class="path">~</span>$ <span class="cmd">whoami</span></p>
-      <h1>Puvan Kumar V</h1>
-      <p class="role"><span class="kw">const</span> <span class="var">role</span> = <span class="str">"Software Developer"</span>;<span class="cursor" aria-hidden="true"></span></p>
-    </div>
-  </main>
+  <div class="page">
+    <header>
+      <span class="mark">PKV</span>
+      <span class="status mono">Portfolio in progress</span>
+    </header>
+
+    <main class="hero">
+      <p class="label mono"><b>//</b> Hello, I'm</p>
+      <h1>Puvan<br>Kumar V</h1>
+    </main>
+
+    <footer class="mono">
+      <span class="role">Software Developer</span>
+      <span>Index — 001</span>
+      <span>© 2026</span>
+    </footer>
+  </div>
 </body>
 </html>
