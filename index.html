@@ -247,6 +247,11 @@
     .pv-mercury .t b { font-size: 9px; }
     .pv-mercury .c { display: grid; place-items: center; text-align: center; font: 400 clamp(11px, 1.5vw, 15px)/1.1 "Times New Roman", serif; text-transform: uppercase; color: #333; padding-inline: 14%; }
 
+    .pv-term { background: #18181b; padding: 5% 6%; display: flex; align-items: center; }
+    .pv-term pre { font: 400 clamp(7px, 1vw, 10.5px)/1.45 ui-monospace, Menlo, monospace; color: #e4e4e7; white-space: pre; }
+    .pv-term .dim { color: #71717a; }
+    .pv-term .ok { color: #4ade80; }
+
     .pv-pixel { background: #1423bb; display: grid; place-items: center; }
     .pv-pixel svg { width: 62%; }
 
@@ -420,6 +425,32 @@
             <article class="card wide">
               <div class="shot" aria-hidden="true">
                 <div class="window">
+                  <div class="bar"><i></i><i></i><i></i><span>check_layout.py --plan</span></div>
+                  <div class="page pv-term"><pre><span class="dim">$ python3 check_layout.py studio.json --plan</span>
+┌─────────────┬────────┐
+│  LOFT BED   │  DESK  │
+│             │        │
+├──────   ────┤  BATH  │
+│  KITCHEN    │        │
+└───────door──┴────────┘
+<span class="ok">✓ clearances  ✓ door swings  ✓ escape window</span>
+<span class="ok">✓ work triangle  ✓ guardrails</span>  <span class="dim">all passed</span></pre></div>
+                </div>
+              </div>
+              <div class="body">
+                <div class="meta mono"><span>AI tooling · Claude skill</span><span>2026</span></div>
+                <h3>Residential Space Designer</h3>
+                <p>A Claude skill that designs every room in a home, from kitchens to whole-home plans, producing a layout, floor plan and bill of materials. A Python checker validates each layout against cited building and safety codes; MCP tools are next on the roadmap.</p>
+                <ul class="tags"><li>Python</li><li>Claude Code</li><li>JSON Schema</li><li>MCP</li></ul>
+                <div class="links-row">
+                  <a href="https://github.com/puvankumarv/residential-space-designer" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>Source</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="shot" aria-hidden="true">
+                <div class="window">
                   <div class="bar"><i></i><i></i><i></i><span>venkatramanconstruction</span></div>
                   <div class="page pv-build">
                     <div class="n"><b>VENKATRAMAN</b><span>SERVICES · PROJECTS · CONTACT</span></div>
@@ -461,7 +492,7 @@
               </div>
             </article>
 
-            <article class="card">
+            <article class="card wide">
               <div class="shot" aria-hidden="true">
                 <div class="window">
                   <div class="bar"><i></i><i></i><i></i><span>puvankumarv.github.io</span></div>
@@ -495,6 +526,7 @@
                 <span class="chip"><i style="background:#e34f26"></i>HTML</span>
                 <span class="chip"><i style="background:#1572b6"></i>CSS</span>
                 <span class="chip"><i style="background:#f7df1e"></i>JavaScript</span>
+                <span class="chip"><i style="background:#3776ab"></i>Python</span>
               </dd>
             </div>
             <div>
@@ -510,6 +542,7 @@
                 <span class="chip"><i style="background:#f05032"></i>Git</span>
                 <span class="chip"><i style="background:var(--text)"></i>GitHub</span>
                 <span class="chip"><i style="background:#007acc"></i>VS Code</span>
+                <span class="chip"><i style="background:#d97757"></i>Claude Code</span>
               </dd>
             </div>
             <div>
